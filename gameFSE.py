@@ -32,6 +32,7 @@ originalBackgroundy=0
 end=False
 countdown=0
 bossAlive=True
+
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #Random pictures are loaded and assigned to their lists
 Inventroytemplate = image.load("pics/Inventory2.png")
@@ -337,7 +338,6 @@ class player(sprite.Sprite):  # put everything in a class, can be used for multi
                     self.cooldown = 0
                     self.sword = False
             if self.char==characterList:
-
                 if self.action < 4:
                     self.action += 5
 
@@ -383,7 +383,6 @@ class player(sprite.Sprite):  # put everything in a class, can be used for multi
                         self.cooldown = 0
                     self.image = self.hitbox[self.action][0][self.cooldown // self.hitbox[self.action][1]]
                     if mode == "enemy":
-
                         hit.image = hit.char[hit.action][0][hit.cooldown // hit.char[hit.action][1]]#Takes an image from the hitbox list and checks if it collides
                         x = hurt
                         if hurt.action > 5 and hurt.action < 8 + 1:
@@ -964,6 +963,7 @@ def endingScreen():
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 # Main screen updates while game is running
 def redrawGameWindow():
+    mixer.music.set_volume(1)
     if len(enemylist)==0:
         jotaro.exitCheck()
     screen.blit(rooms[room - 1], (Backgroundx, Backgroundy))
@@ -975,7 +975,7 @@ def redrawGameWindow():
     screen.blit(covers[room - 1], (Backgroundx, Backgroundy))
     display.update()
 # ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
-clock = time.Clock(600)
+clock = time.Clock()
 # main loop
 running = True
 while running:
